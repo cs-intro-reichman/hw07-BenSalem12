@@ -1,26 +1,39 @@
-
+import java.util.Arrays;
 
 public class HashTagTokenizer {
 
 	public static void main(String[] args) {
 
 		String hashTag = args[0];
+		hashTag = hashTag.toLowerCase();
+
 		String []dictionary = readDictionary("dictionary.txt");
+
+		//read dictionary
+		/*System.out.println("Dictionary loaded successfully.");
+        System.out.println("Dictionary length: " + dictionary.length);*/
+
+		//check if word exist in dictionary
+		/*System.out.println("Word '" + hashTag + "' exists: " + existInDictionary(hashTag, dictionary));*/
+
 		breakHashTag(hashTag, dictionary);
 	}
 
 	public static String[] readDictionary(String fileName) {
 		String[] dictionary = new String[3000];
 
-		In in = new In(fileName);
+		In in = new In(fileName);		
 
-		// Your code here
+		for (int i = 0; i < 3000; i++) {
+			dictionary[i] = in.readString();
 
+		}
 		return dictionary;
 	}
 
 	public static boolean existInDictionary(String word, String []dictionary) {
-		// Your code here
+		boolean wordExist = Arrays.asList(dictionary).contains(word);
+		return wordExist;
 	}
 
 	public static void breakHashTag(String hashtag, String[] dictionary) {
@@ -31,10 +44,20 @@ public class HashTagTokenizer {
         }
  
         int N = hashtag.length();
+		String word = "";
+		boolean wordExist;
 
         for (int i = 1; i <= N; i++) {
-		
+			word = hashtag.substring(0,i);
+			wordExist = existInDictionary(word, dictionary);
+			if (wordExist){
+				System.out.println(word);
+				hashtag = hashtag.substring(i,N);
+				breakHashTag (hashtag, dictionary);
+				return;
+			}
         }
+		return;
     }
 
 }

@@ -16,12 +16,17 @@ public class SpellChecker {
 
 		if (str.length() == 0)
 			return null;
+
+			//linoy feedback: you can remove the else
 		else
 			return str.substring(1);
 	}
 
 	public static int levenshtein(String word1, String word2) {
-		
+		//linoy feedback: fix the orders of the lines for example: 
+			//if (word1.isEmpty()) {
+             		//	return word2.length();
+        		// }
 		if (word1.isEmpty()) {
              return word2.length();
          }
@@ -51,6 +56,8 @@ public class SpellChecker {
     }
 
 	public static String[] readDictionary(String fileName) {
+
+		//linoy feedback: this is the same method as earlier, why don't you use one method for both of the classes? 
 		String[] dictionary = new String[3000];
 
 		In in = new In(fileName);

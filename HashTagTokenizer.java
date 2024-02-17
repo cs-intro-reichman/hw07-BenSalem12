@@ -24,6 +24,7 @@ public class HashTagTokenizer {
 
 		In in = new In(fileName);		
 
+		//linoy feedback: who said you have 3000 lines? why not using while loop?
 		for (int i = 0; i < 3000; i++) {
 			dictionary[i] = in.readString();
 
@@ -32,6 +33,7 @@ public class HashTagTokenizer {
 	}
 
 	public static boolean existInDictionary(String word, String []dictionary) {
+		//linoy feedback: what if dictionary is empty? contains will not work..  I suggest you to check if dictionary is not empty first.
 		boolean wordExist = Arrays.asList(dictionary).contains(word);
 		return wordExist;
 	}
